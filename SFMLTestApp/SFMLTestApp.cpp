@@ -3,47 +3,74 @@
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(600, 600), "Field");
-
-  window.setFramerateLimit(65);
-
-  sf::Texture textureActor;
-  if (!textureActor.loadFromFile("../SFMLTestApp/Resources/actor.png"))
-    return -1;
-
-  sf::Sprite spriteActor;
-  spriteActor.setTexture(textureActor);
-
-  /*sf::Texture textureFPS;
-  if (!textureFPS.create(100, 100))
-    return -1;
-
-  sf::Sprite spriteFPS(textureFPS);*/
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Field");
+	window.setFramerateLimit(65);
 
 
-  // Главный цикл приложения. Выполняется, пока открыто окно
-  while (window.isOpen())
-  {
-    // Обрабатываем очередь событий в цикле
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-      // Пользователь нажал на «крестик» и хочет закрыть окно?
-      if (event.type == sf::Event::Closed)
-        window.close();
+	sf::Texture herotexture;
+	herotexture.loadFromFile("../SFMLTestApp/Resources/hero.png");
+
+	sf::Sprite herosprite;
+	herosprite.setTexture(herotexture);
+	herosprite.setTextureRect(sf::IntRect(0, 192, 96, 96));
+	herosprite.setPosition(250, 250);
+
+	float CurrentFrame = 0;//хранит текущий кадр
+	sf::Clock clock;
+
+	while (window.isOpen())
+	{
+
+		float time = clock.getElapsedTime().asMicroseconds();
+		clock.restart();
+		time = time / 800;
 
 
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
 
-    }
 
-    /*sf::Uint8* pixels = ;
-    textureFPS.update(pixels);
-    window.draw(spriteFPS);*/
+		///////////////////////////////////////////Управление персонажем с анимацией////////////////////////////////////////////////////////////////////////
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) { //если нажата клавиша стрелка влево или англ буква А
+			CurrentFrame += 0.005 * time; //служит для прохождения по "кадрам". переменная доходит до трех суммируя произведение времени и скорости. изменив 0.005 можно изменить скорость анимации
+			if (CurrentFrame > 3) CurrentFrame -= 3; //проходимся по кадрам с первого по третий включительно. если пришли к третьему кадру - откидываемся назад.
+			herosprite.setTextureRect(sf::IntRect(96 * int(CurrentFrame), 96, 96, 96)); //проходимся по координатам Х. получается 96,96*2,96*3 и опять 96
+			herosprite.move(-0.1 * time, 0);//происходит само движение персонажа влево
+		}
 
-    window.draw(spriteActor);
-    window.display();
-  }
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) {
+			CurrentFrame += 0.005 * time; //служит для прохождения по "кадрам". переменная доходит до трех суммируя произведение времени и скорости. изменив 0.005 можно изменить скорость анимации
+			if (CurrentFrame > 3) CurrentFrame -= 3; //проходимся по кадрам с первого по третий включительно. если пришли к третьему кадру - откидываемся назад.
+			herosprite.setTextureRect(sf::IntRect(96 * int(CurrentFrame), 192, 96, 96)); //проходимся по координатам Х. получается 96,96*2,96*3 и опять 96
 
-  return 0;
+			herosprite.move(0.1 * time, 0);//происходит само движение персонажа вправо
+
+		}
+
+
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) {
+			CurrentFrame += 0.005 * time; //служит для прохождения по "кадрам". переменная доходит до трех суммируя произведение времени и скорости. изменив 0.005 можно изменить скорость анимации
+			if (CurrentFrame > 3) CurrentFrame -= 3; //проходимся по кадрам с первого по третий включительно. если пришли к третьему кадру - откидываемся назад.
+			herosprite.setTextureRect(sf::IntRect(96 * int(CurrentFrame), 288, 96, 96)); //проходимся по координатам Х. получается 96,96*2,96*3 и опять 96
+			herosprite.move(0, -0.1 * time);//происходит само движение персонажа вверх
+		}
+
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) {
+			CurrentFrame += 0.005 * time; //служит для прохождения по "кадрам". переменная доходит до трех суммируя произведение времени и скорости. изменив 0.005 можно изменить скорость анимации
+			if (CurrentFrame > 3) CurrentFrame -= 3; //проходимся по кадрам с первого по третий включительно. если пришли к третьему кадру - откидываемся назад.
+			herosprite.setTextureRect(sf::IntRect(96 * int(CurrentFrame), 0, 96, 96)); //проходимся по координатам Х. получается 96,96*2,96*3 и опять 96
+			herosprite.move(0, 0.1 * time);//происходит само движение персонажа вниз
+		}
+
+		window.clear();
+		window.draw(herosprite);
+		window.display();
+	}
+
+	return 0;
 }
 
