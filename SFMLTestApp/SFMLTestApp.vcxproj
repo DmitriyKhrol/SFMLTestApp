@@ -145,10 +145,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="SFMLTestApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\actor.png" />
+    <Image Include="Resources\hero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
