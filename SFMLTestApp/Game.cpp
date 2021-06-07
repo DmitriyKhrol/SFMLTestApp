@@ -2,11 +2,14 @@
 
 Game::Game()
   : mWindow(sf::VideoMode(640, 480), "SFML Application")
+  , mTexture()
   , mPlayer()
+  , mFont()
+  , mFPS()
 {
-  mPlayer.setRadius(40.f);
+  /*mPlayer.setRadius(40.f);
   mPlayer.setPosition(100.f, 100.f);
-  mPlayer.setFillColor(sf::Color::Cyan);
+  mPlayer.setFillColor(sf::Color::Cyan);*/
   mWindow.setFramerateLimit(60);
   mWindow.setVerticalSyncEnabled(true);
   mIsMovingUp = false;
@@ -14,12 +17,29 @@ Game::Game()
   mIsMovingRight = false;
   mIsMovingDown = false;
   PlayerSpeed = 125.0f;
+  
+  if (!mTexture.loadFromFile("../SFMLTestApp/Resources/hero.png"))
+  {
+    // Handle loading error
+  }
+  mPlayer.setTexture(mTexture);
+  mPlayer.setPosition(100.f, 100.f);
+
+  if (!mFont.loadFromFile("../SFMLTestApp/Resources/AGENCYB.TTF"))
+  {
+    // Handle loading error
+  }
+  mFPS.setFont(mFont);
+  mFPS.setCharacterSize(12);
+  mFPS.setFillColor(sf::Color::White);
+  mFPS.setPosition(50.0f, 50.0f); 
 }
 
 void Game::run()
 {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
+
   while (mWindow.isOpen())
   {
     processEvents();
@@ -67,13 +87,18 @@ void Game::update(sf::Time deltaTime)
     movement.x -= PlayerSpeed;
   if (mIsMovingRight)
     movement.x += PlayerSpeed;
-  mPlayer.move(movement * deltaTime.asSeconds());
+  if(movement.x != 0 && movement.y != 0)
+    mPlayer.move(movement / 1.414214f * deltaTime.asSeconds());    // 1.414214f = sqrt(2), движение по диагонали
+  else
+    mPlayer.move(movement * deltaTime.asSeconds());
+  mFPS.setString(std::to_string(1 / deltaTime.asSeconds()) + " fps");        /////////////////////////////////////////
 }
 
 void Game::render()
 {
   mWindow.clear();
   mWindow.draw(mPlayer);
+  mWindow.draw(mFPS);
   mWindow.display();
 }
 
