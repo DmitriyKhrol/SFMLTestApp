@@ -38,4 +38,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\AGENCYB.TTF">
+      <Filter>Файлы ресурсов\Resources</Filter>
+    </Font>
+    <Font Include="Resources\AGENCYR.TTF">
+      <Filter>Файлы ресурсов\Resources</Filter>
+    </Font>
+  </ItemGroup>
 </Project>
