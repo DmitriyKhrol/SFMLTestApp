@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <SFML/Audio.hpp>
 
 Game::Game()
   : mWindow(sf::VideoMode(640, 480), "SFML Application")
