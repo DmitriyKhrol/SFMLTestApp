@@ -1,10 +1,11 @@
 #include "Game.h"
+#include "TextureHolder.h"
+#include "GlobalData.h"
 #include <SFML/Audio.hpp>
 
 Game::Game()
   : mWindow(sf::VideoMode(640, 480), "SFML Application")
-  , mTexture()
-  , mPlayer()
+  , playerPlane()
   , mFont()
   , mFPS()
 {
@@ -19,12 +20,9 @@ Game::Game()
   mIsMovingDown = false;
   PlayerSpeed = 125.0f;
   
-  if (!mTexture.loadFromFile("../SFMLTestApp/Resources/hero.png"))
-  {
-    // Handle loading error
-  }
-  mPlayer.setTexture(mTexture);
-  mPlayer.setPosition(100.f, 100.f);
+  textures.Load(Textures::ID::Hero, "../SFMLTestApp/Resources/hero.png");
+  playerPlane.setTexture(textures.Get(Textures::ID::Hero));
+  playerPlane.setPosition(100.f, 100.f);
 
   if (!mFont.loadFromFile("../SFMLTestApp/Resources/AGENCYB.TTF"))
   {
@@ -34,6 +32,8 @@ Game::Game()
   mFPS.setCharacterSize(12);
   mFPS.setFillColor(sf::Color::White);
   mFPS.setPosition(50.0f, 50.0f); 
+
+
 }
 
 void Game::run()
@@ -89,16 +89,16 @@ void Game::update(sf::Time deltaTime)
   if (mIsMovingRight)
     movement.x += PlayerSpeed;
   if(movement.x != 0 && movement.y != 0)
-    mPlayer.move(movement / 1.414214f * deltaTime.asSeconds());    // 1.414214f = sqrt(2), движение по диагонали
+    playerPlane.move(movement / 1.414214f * deltaTime.asSeconds());    // 1.414214f = sqrt(2), движение по диагонали
   else
-    mPlayer.move(movement * deltaTime.asSeconds());
+    playerPlane.move(movement * deltaTime.asSeconds());
   mFPS.setString(std::to_string(1 / deltaTime.asSeconds()) + " fps");        /////////////////////////////////////////
 }
 
 void Game::render()
 {
   mWindow.clear();
-  mWindow.draw(mPlayer);
+  mWindow.draw(playerPlane);
   mWindow.draw(mFPS);
   mWindow.display();
 }

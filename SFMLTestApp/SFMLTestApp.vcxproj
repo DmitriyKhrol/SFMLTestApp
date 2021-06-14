@@ -147,7 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SFMLTestApp.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureHolder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\actor.png" />
@@ -155,7 +155,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="GlobalData.h" />
+    <ClInclude Include="TextureHolder.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\AGENCYB.TTF" />

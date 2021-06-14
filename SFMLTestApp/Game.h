@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "TextureHolder.h"
 
 // Texture (graphics card)     // sf::Texture::getMaximumSize()
 // Image -> Texture -> Sprite
@@ -38,14 +39,16 @@ class Game
 public:
   Game();
   void run();
+
 private:
   void processEvents();
   void update(sf::Time deltaTime);
   void render();
   void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+
 private:
   sf::RenderWindow mWindow;
-  sf::Sprite mPlayer;
+  sf::Sprite playerPlane;
   sf::Text mFPS;
   sf::Font mFont;
   bool mIsMovingUp;
@@ -54,5 +57,6 @@ private:
   bool mIsMovingRight;
   float PlayerSpeed;
   const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-  sf::Texture mTexture;
+  //sf::Texture mTexture;
+  TextureHolder textures;
 };
