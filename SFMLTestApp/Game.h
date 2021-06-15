@@ -31,9 +31,9 @@
 // Music
 // WAV, OGG, AIFF
 
-
-
-
+/*
+  Данный класс отвечает за полный набор функций жизненного цикла программы.
+*/
 class Game
 {
 public:
@@ -57,6 +57,5 @@ private:
   bool mIsMovingRight;
   float PlayerSpeed;
   const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-  //sf::Texture mTexture;
   TextureHolder textures;
 };

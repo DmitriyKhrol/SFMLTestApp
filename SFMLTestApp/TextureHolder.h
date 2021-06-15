@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include "GlobalData.h"
 
+/*
+  Данный класс отвечает за правильную работу с текстурами. Их загрузку в программу, хранение и выдачу.
+*/
 class TextureHolder {
 public:
   void Load(Textures::ID id, const std::string& filename);

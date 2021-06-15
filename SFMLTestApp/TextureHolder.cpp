@@ -2,6 +2,7 @@
 #include "GlobalData.h"
 #include <cassert>
 
+
 void TextureHolder::Load(Textures::ID id, const std::string& filename)
 {
   std::unique_ptr<sf::Texture> texture(new sf::Texture());
@@ -14,6 +15,6 @@ void TextureHolder::Load(Textures::ID id, const std::string& filename)
 sf::Texture& TextureHolder::Get(Textures::ID id)
 {
   auto found = mTextureMap.find(id);
-  assert(found != mTextureMap.end());
+  assert(found != mTextureMap.end() && "Not found this texture!");    // Утверждение, если не нашли текстуру с таким ID
   return *found->second;
 }
