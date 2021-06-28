@@ -9,11 +9,11 @@
 */
 class TextureHolder {
 public:
-  void Load(Textures::ID id, const std::string& filename);
-  sf::Texture& Get(Textures::ID id);
-  const sf::Texture& Get(Textures::ID id) const;
+    void Load(Textures::ID id, const std::string& filename);
+    sf::Texture& Get(Textures::ID id);
+    const sf::Texture& Get(Textures::ID id) const;
 private:
-  
+
 private:
-  std::map<Textures::ID, std::unique_ptr<sf::Texture>> mTextureMap;
+    std::map<Textures::ID, std::unique_ptr<sf::Texture>> mTextureMap;
 };

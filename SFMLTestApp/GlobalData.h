@@ -4,8 +4,8 @@
 */
 
 namespace Textures {
-  enum class ID {
-    Hero,
-  };
+    enum class ID {
+        Hero,
+    };
 
 }

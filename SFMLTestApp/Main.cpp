@@ -2,10 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
+/*
+	Вход в программу, вызывает запуск игры. Создаёт игру и вызывает её исполнение. 
+	(ЧТО делает? КАК код выполняет задание? ПОЧЕМУ код выполняет задание именно так, а не иначе?)
+	\param Отсутствуют
+	\return (int 0) - нет ошибок, иначе произошла ошибка	
+*/
 int main()
 {
 	Game game;
-	game.run();
+	game.Run();
 
 	//sf::RenderWindow window(sf::VideoMode(640, 480), "Field");
 	//window.setFramerateLimit(65);
@@ -30,12 +36,12 @@ int main()
 	//	time = time / 800;
 
 
-	//	sf::Event event;
-	//	while (window.pollEvent(event))
-	//	{
-	//		if (event.type == sf::Event::Closed)
-	//			window.close();
-	//	}
+	/*sf::Event event;
+	while (window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+			window.close();
+	}*/
 
 
 	//	///////////////////////////////////////////Управление персонажем с анимацией////////////////////////////////////////////////////////////////////////
