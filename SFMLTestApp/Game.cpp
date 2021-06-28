@@ -40,16 +40,21 @@ void Game::Run()
 {
     sf::Clock clock;    // Запуск таймера, по которому будем сверяться сколько прошло времени
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    sf::Time currSteoOfTime = sf::Time::Zero;
+    int i = 0;
 
     while (mWindow.isOpen())    // всёрнутое окно считается true
     {
         processEvents();    // Обрабатываем все накопившиеся события от пользователя, обновляем значения флагов, например какие клавиши были нажаты
-        timeSinceLastUpdate += clock.restart();     // Записываем прошедшее время на таймере и сбрасываем таймер на 0
+        currSteoOfTime = clock.restart();                    // Записываем прошедшее время на таймере и сбрасываем таймер на 0
+        i++;
+        timeSinceLastUpdate += currSteoOfTime;     
    
         while (timeSinceLastUpdate >= TimePerFrame) {        // Прошло достаточно времени для обновления кадра
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();     
-            update(TimePerFrame);       // Обрабатываем новую итерацию цикла жизни игры, физический тик игры
+            update(timeSinceLastUpdate + TimePerFrame, TimePerFrame, i);       // Обрабатываем новую итерацию цикла жизни игры, физический тик игры
+            i = 0;
         }
         
         render();   // Отображаем новый кадр на основе нового физического тика игры
@@ -78,7 +83,7 @@ void Game::processEvents()
     }
 }
 
-void Game::update(sf::Time deltaTime)
+void Game::update(sf::Time deltaTime, sf::Time oneFrameTime, int countTick)
 {
     sf::Vector2f movement(0.f, 0.f);
     if (mIsMovingUp)
@@ -93,7 +98,8 @@ void Game::update(sf::Time deltaTime)
         playerPlane.move(movement / 1.414214f * deltaTime.asSeconds());    // 1.414214f = sqrt(2), движение по диагонали
     else
         playerPlane.move(movement * deltaTime.asSeconds());
-    mFPS.setString(std::to_string(1 / deltaTime.asSeconds()) + " fps");        /////////////////////////////////////////
+
+    mFPS.setString(std::to_string(deltaTime.asSeconds() / oneFrameTime.asSeconds() / oneFrameTime.asSeconds() * countTick) + " fps");
 }
 
 void Game::render()

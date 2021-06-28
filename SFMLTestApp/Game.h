@@ -67,7 +67,7 @@ private:
     void processEvents();
 
     // Обрабатывает новую итерацию цикла жизни игры, физический тик игры
-    void update(sf::Time deltaTime);
+    void update(sf::Time deltaTime, sf::Time oneFrameTime, int countTick);
 
     // Отображает новый кадр на основе нового физического тика игры
     void render();
