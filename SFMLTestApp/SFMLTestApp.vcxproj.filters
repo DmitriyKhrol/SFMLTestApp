@@ -46,6 +46,9 @@
     <ClInclude Include="TextureHolder.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceHolder.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\AGENCYB.TTF">
@@ -54,5 +57,10 @@
     <Font Include="Resources\AGENCYR.TTF">
       <Filter>Файлы ресурсов\Resources</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ResourceHolder.inl">
+      <Filter>Файлы заголовков</Filter>
+    </None>
   </ItemGroup>
 </Project>

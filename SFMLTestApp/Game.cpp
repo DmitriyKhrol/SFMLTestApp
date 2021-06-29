@@ -41,20 +41,20 @@ void Game::Run()
     sf::Clock clock;    // Запуск таймера, по которому будем сверяться сколько прошло времени
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     sf::Time currSteoOfTime = sf::Time::Zero;
-    int i = 0;
+    int countTick = 0;
 
-    while (mWindow.isOpen())    // всёрнутое окно считается true
+    while (mWindow.isOpen())    // свёрнутое окно считается true
     {
         processEvents();    // Обрабатываем все накопившиеся события от пользователя, обновляем значения флагов, например какие клавиши были нажаты
         currSteoOfTime = clock.restart();                    // Записываем прошедшее время на таймере и сбрасываем таймер на 0
-        i++;
+        countTick++;
         timeSinceLastUpdate += currSteoOfTime;     
    
         while (timeSinceLastUpdate >= TimePerFrame) {        // Прошло достаточно времени для обновления кадра
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();     
-            update(timeSinceLastUpdate + TimePerFrame, TimePerFrame, i);       // Обрабатываем новую итерацию цикла жизни игры, физический тик игры
-            i = 0;
+            update(timeSinceLastUpdate + TimePerFrame, TimePerFrame, countTick);       // Обрабатываем новую итерацию цикла жизни игры, физический тик игры
+            countTick = 0;
         }
         
         render();   // Отображаем новый кадр на основе нового физического тика игры

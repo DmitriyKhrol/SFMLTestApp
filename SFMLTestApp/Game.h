@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "TextureHolder.h"
+#include "ResourceHolder.h"
 
 //                      ** пеяспяш б SFML **
 // 
