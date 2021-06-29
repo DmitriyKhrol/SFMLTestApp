@@ -5,6 +5,9 @@
 #include <cassert>
 #include "GlobalData.h"
 
+/*
+    Позволяет загружать и получать ресурсы (текстуры, шрифты, звуки)
+*/
 template <typename Identifier, typename Resource>
 class ResourceHolder
 {
