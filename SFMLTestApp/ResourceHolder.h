@@ -5,16 +5,23 @@
 #include <cassert>
 #include "GlobalData.h"
 
-template <typename Resource, typename Identifier>
+template <typename Identifier, typename Resource>
 class ResourceHolder
 {
 public:
     /*
         Загрузка ресурса (текстура, шрифт, звук) в mResourceMap из файла
-        \param id - индентификатор загружаемого ресурса, filename - название файла ресурса
+        \param id - индентификатор загружаемого ресурса; filename - название файла ресурса
+    */
+    void Load(Identifier id, const std::string& filename);
+
+    /*
+        Загрузка ресурса (текстура, шрифт, звук) в mResourceMap из файла
+        \param id - индентификатор загружаемого ресурса; filename - название файла ресурса; secondParam - дополнительный параметр
+        для функций загрузки шейдеров или текстур, где необходим
     */
     template <typename Parameter>
-    void Load(Identifier id, const std::string& filename, const Parameter& secondParam);
+    void Load(Identifier id, const std::string& filename, const Parameter& secondParam);    
 
     /*
         Получение ресурса по его идентификатору
@@ -26,3 +33,6 @@ public:
 private:
     std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
+
+
+#include "ResourceHolder.inl"

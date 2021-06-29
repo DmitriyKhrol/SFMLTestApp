@@ -1,12 +1,11 @@
+#pragma once
 #include "Game.h"
-#include "TextureHolder.h"
-#include "GlobalData.h"
-#include <SFML/Audio.hpp>
+
+
 
 Game::Game()
     : mWindow(sf::VideoMode(640, 480), "SFML Application")
     , playerPlane()
-    , mFont()
     , mFPS()
 {
     /*mPlayer.setRadius(40.f);
@@ -20,18 +19,21 @@ Game::Game()
     mIsMovingDown = false;
     PlayerSpeed = 125.0f;
 
-    textures.Load(Textures::ID::Hero, "../SFMLTestApp/Resources/hero.png");
-    playerPlane.setTexture(textures.Get(Textures::ID::Hero));
+    // Загрузка тексутры героя
+    textureHolder.Load(Textures::ID::Hero, "../SFMLTestApp/Resources/hero.png");
+    playerPlane.setTexture(textureHolder.Get(Textures::ID::Hero));
     playerPlane.setPosition(100.f, 100.f);
 
-    if (!mFont.loadFromFile("../SFMLTestApp/Resources/AGENCYB.TTF"))
-    {
-        // Handle loading error
-    }
-    mFPS.setFont(mFont);
+    // Загрузка шрифта для счётчика FPS
+    fontHolder.Load(Fonts::ID::FPS, "../SFMLTestApp/Resources/AGENCYB.TTF");
+    mFPS.setFont(fontHolder.Get(Fonts::ID::FPS));
     mFPS.setCharacterSize(12);
     mFPS.setFillColor(sf::Color::White);
     mFPS.setPosition(50.0f, 50.0f);
+
+
+
+
 
 
 }

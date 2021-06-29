@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "TextureHolder.h"
+#include <SFML/Audio.hpp>
 #include "ResourceHolder.h"
+#include "GlobalData.h"
 
 //                      ** РЕСУРСЫ В SFML **
 // 
@@ -81,12 +82,13 @@ private:
     sf::RenderWindow mWindow;
     sf::Sprite playerPlane;     // спрайт игрока
     sf::Text mFPS;              // текст FPS
-    sf::Font mFont;             // шрифт для поля FPS
     bool mIsMovingUp;           // флаг направления движения игрока вверх
     bool mIsMovingDown;         // флаг направления движения игрока вниз
     bool mIsMovingLeft;         // флаг направления движения игрока влево
     bool mIsMovingRight;        // флаг направления движения игрока вправо
     float PlayerSpeed;          // текущая скорость игрока
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-    TextureHolder textures;
+
+    ResourceHolder<Textures::ID, sf::Texture> textureHolder;
+    ResourceHolder<Fonts::ID, sf::Font> fontHolder;
 };
