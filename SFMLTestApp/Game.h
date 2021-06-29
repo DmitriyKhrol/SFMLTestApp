@@ -80,8 +80,8 @@ private:
 private:
     sf::RenderWindow mWindow;
     sf::Sprite playerPlane;     // спрайт игрока
-    sf::Text mFPS;              // текст
-    sf::Font mFont;             // шрифт
+    sf::Text mFPS;              // текст FPS
+    sf::Font mFont;             // шрифт для поля FPS
     bool mIsMovingUp;           // флаг направления движения игрока вверх
     bool mIsMovingDown;         // флаг направления движения игрока вниз
     bool mIsMovingLeft;         // флаг направления движения игрока влево

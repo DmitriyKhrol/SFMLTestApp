@@ -10,10 +10,11 @@ class ResourceHolder
 {
 public:
     /*
-        Загрузка ресурса (картинка, музыка и др.) в mResourceMap из файла
+        Загрузка ресурса (текстура, шрифт, звук) в mResourceMap из файла
         \param id - индентификатор загружаемого ресурса, filename - название файла ресурса
     */
-    void Load(Identifier id, const std::string& filename);
+    template <typename Parameter>
+    void Load(Identifier id, const std::string& filename, const Parameter& secondParam);
 
     /*
         Получение ресурса по его идентификатору
