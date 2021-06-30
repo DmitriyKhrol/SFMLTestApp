@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include <map>
-#include <memory>
-#include <cassert>
+#include <memory>       // std::unique_ptr
+#include <cassert>      // assert()
 #include "GlobalData.h"
+#include <stdexcept>    // std::runtime_error
 
 /*
     Позволяет загружать и получать ресурсы (текстуры, шрифты, звуки)

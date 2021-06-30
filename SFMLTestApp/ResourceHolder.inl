@@ -1,5 +1,5 @@
 #include "ResourceHolder.h"
-#include <stdexcept>    // std::runtime_error
+
 
 template <typename Identifier, typename Resource>
 void ResourceHolder<Identifier, Resource>::Load(Identifier id, const std::string& filename)

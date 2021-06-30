@@ -149,6 +149,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SceneNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\actor.png" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GlobalData.h" />
     <ClInclude Include="ResourceHolder.h" />
+    <ClInclude Include="SceneNode.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\AGENCYB.TTF" />

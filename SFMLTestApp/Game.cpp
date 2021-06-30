@@ -20,9 +20,10 @@ Game::Game()
     PlayerSpeed = 125.0f;
 
     // Загрузка тексутры героя
-    textureHolder.Load(Textures::ID::Hero, "../SFMLTestApp/Resources/hero.png");
+    textureHolder.Load(Textures::ID::Hero, "../SFMLTestApp/Resources/actor.png");
     playerPlane.setTexture(textureHolder.Get(Textures::ID::Hero));
     playerPlane.setPosition(100.f, 100.f);
+    playerPlane.setScale(sf::Vector2f(0.2f, 0.2f));
 
     // Загрузка шрифта для счётчика FPS
     fontHolder.Load(Fonts::ID::FPS, "../SFMLTestApp/Resources/AGENCYB.TTF");
