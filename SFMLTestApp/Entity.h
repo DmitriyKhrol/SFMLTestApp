@@ -1,10 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "SceneNode.h"
 
 /*
     Базовая сущность игрового элемента в мире (персонаж, предмет, снаряд и др.)
 */
-class Entity
+class Entity : public SceneNode
 {
 public:
     void SetVelocity(sf::Vector2f velocity);

@@ -64,6 +64,8 @@ public:
     // Запускает игру, жизненный цикл игры
     void Run();
 
+    typedef ResourceHolder<Textures::ID, sf::Texture> TextureHolder;
+    typedef ResourceHolder<Fonts::ID, sf::Font> FontHolder;
 private:
     // Функция обработки всех накопившихся событий от пользователя за итерацию жизненного цикла игры
     void processEvents();
@@ -74,7 +76,7 @@ private:
     // Отображает новый кадр на основе нового физического тика игры
     void render();
 
-    // Обрабатывает нажатия и отжатик кнопок пользователем, сохраняя состояния кнопок в флаги
+    // Обрабатывает нажатия и отжатия кнопок пользователем, сохраняя состояния кнопок в флаги
     // \param Идентификатор кнопки и состояние нажатия кнопки, где true - нажата, false - отжата
     void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 
@@ -89,6 +91,6 @@ private:
     float PlayerSpeed;          // текущая скорость игрока
     const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 
-    ResourceHolder<Textures::ID, sf::Texture> textureHolder;
-    ResourceHolder<Fonts::ID, sf::Font> fontHolder;
+    TextureHolder textureHolder;
+    FontHolder fontHolder;
 };
