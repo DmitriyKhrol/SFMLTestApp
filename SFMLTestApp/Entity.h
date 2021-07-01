@@ -13,4 +13,6 @@ public:
     sf::Vector2f GetVelocity() const;
 private:
     sf::Vector2f mVelocity;     // текущая скорость сущности
+
+    virtual void updateCurrent(sf::Time dt);
 };

@@ -15,3 +15,11 @@ namespace Fonts {
         FPS,
     };
 }
+
+namespace Layers {
+    enum class Layer {
+        Background,
+        Entities,
+        LayersCount     // Не является слоем, служит для определения количества слоев в данном перечислении
+    };
+}

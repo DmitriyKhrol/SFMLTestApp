@@ -28,3 +28,34 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
         (*itr)->draw(target, states);
     }
 }
+
+
+
+void SceneNode::Update(sf::Time dt)
+{
+    updateCurrent(dt);
+    updateChildren(dt);
+}
+
+void SceneNode::updateCurrent(sf::Time)
+{
+}
+
+void SceneNode::updateChildren(sf::Time dt)
+{
+    for(Ptr& child : mChildren)     // FOREACH
+        child->Update(dt);
+}
+
+sf::Transform SceneNode::getWorldTransform() const
+{
+    sf::Transform transform = sf::Transform::Identity;
+    for (const SceneNode* node = this;
+         node != nullptr; node = node->mParent)
+        transform = node->getTransform() * transform;
+    return transform;
+}
+sf::Vector2f SceneNode::getWorldPosition() const
+{
+    return getWorldTransform() * sf::Vector2f();
+}

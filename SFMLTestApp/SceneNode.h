@@ -10,6 +10,8 @@ public:
     typedef std::unique_ptr<SceneNode> Ptr;
     void AttachChild(Ptr child);
     Ptr DetachChild(const SceneNode& node);
+
+    void Update(sf::Time dt);
 public:
     SceneNode();
 private:
@@ -18,4 +20,10 @@ private:
 
     std::vector<Ptr> mChildren;
     SceneNode* mParent;
+
+    virtual void updateCurrent(sf::Time dt);
+    void updateChildren(sf::Time dt);
+
+    sf::Transform getWorldTransform() const;
+    sf::Vector2f getWorldPosition() const;
 };
